@@ -7,4 +7,8 @@
  */
 $config = include 'config.php';
 $dsn = "mysql:host=" . $config['database_host'] . ';dbname=' . $config['database_name'] . ';charset=utf8';
-$pdo = new PDO($dsn, $config['database_username'], $config['database_password'], [PDO::ATTR_EMULATE_PREPARES => false]);
+$pdo = new PDO($dsn, $config['database_username'], $config['database_password'], [
+    PDO::ATTR_EMULATE_PREPARES => false,
+    PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION
+
+]);
