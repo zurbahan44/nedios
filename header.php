@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<?php
+include "function.php";
+?>
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Menü</title>
+    <title>Sayfa başlığı</title>
     <style>
         *{margin:0; padding:0;}
         .menu{width:800px; height:48px; background:#000; margin:0 auto;border-bottom:4px solid red;
@@ -42,7 +40,7 @@
 <header>
     <div class="menu">
         <ul>
-            <li><a href="#">Anasayfa</a></li>
+            <li><a href="http://localhost/nedios/index.php">Anasayfa</a></li>
             <li><a href="#">Galeri</a></li>
             <li><a href="#">Videolar</a></li>
             <li><a href="#">Haberler</a></li>
@@ -52,16 +50,5 @@
             <li><a href="#">Testler</a></li>
         </ul>
     </div>
-    <div id="main">
-        <div style="display: inline-block;width: 492px">
-            <h1>Adamın Bacağı Koptu</h1>
-            <a href="detay.html">
-                <img width="492" height="262" src="http://lorempixel.com/492/262/sports/1/" alt="Adamın Bacağı Koptu" title="Adamın Bacağı Koptu">
-            </a>
-            <p>Yaygın inancın tersine, Lorem Ipsum rastgele sözcüklerden oluşmaz. Kökleri M.Ö. 45 tarihinden bu yana klasik
-                Latin edebiyatına kadar uzanan 2000 yıllık bir geçmişi vardır. Virginia'daki Hampden-Sydney College'dan Latince profesörü
-                Richard McClintock, bir Lorem Ipsum pasajında geçen ve anlaşılması en güç sözcüklerden biri olan 'consectetur' sözcüğünün klasik edebiyattaki örneklerini incelediğinde kesin bir kaynağa </p>
 </header>
-<body>
-
-</html>
+<div id="main">

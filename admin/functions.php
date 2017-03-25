@@ -1,4 +1,7 @@
 <?php
+session_start();
+?>
+<?php
 include '../database.php';
 
 /**
@@ -115,6 +118,30 @@ function get_madde(int $madde_id):array
     $prepared=$pdo->prepare("SELECT * FROM madde WHERE madde_id=:id");
     $prepared->execute(['id'=>$madde_id]);
     return $prepared->fetch();
+}
+
+
+function login_check()
+{
+    return isset($_SESSION['login']) ? true : false;
+}
+
+function do_login(string $uyeadi, string $uyesifre): bool
+{
+    global $pdo;
+    $query = $pdo->query("SELECT * FROM uyeler WHERE uye_adi='$uyeadi' AND uye_sifre='$uyesifre'");
+    $user = $query->fetch();
+    if ($user) {
+        $_SESSION['login'] = true;
+        return true;
+    }
+    return false;
+}
+
+function do_logout()
+{
+    unset($_SESSION['login']);
+    return true;
 }
 
 ?>

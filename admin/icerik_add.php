@@ -1,6 +1,9 @@
 <?php
 include "functions.php";
-
+if(!login_check()){
+    header("Location: /nedios/login.php");
+    exit;
+}
 
 if(isset($_POST['icerik_submit'])){
     try {

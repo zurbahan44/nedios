@@ -17,7 +17,7 @@ if (isset($_POST['_submit'])){
     try {
         $uyeadi=$_POST['uyeadi'];
         $uyesifre=$_POST['uyesifre'];
-        $logged=login($uyeadi,$uyesifre);
+        $logged=do_login($uyeadi,$uyesifre);
         if($logged){
             $status=true;
             $message="Giriş yapıldı";
