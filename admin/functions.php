@@ -7,7 +7,13 @@ include '../database.php';
  * @param string $icerik_desc
  * @return int
  *
- *   İçerik Ekleme Fonksiyon  */
+ *
+ *
+ *
+ * /******************************************* İÇERİK FUNCTIONS ***************************************************************************/
+
+
+   /**** İçerik Ekleme Fonksiyon  */
 
 function icerik_add(int $icerik_id, string $icerik_title, string $icerik_kategori, string $icerik_desc, int $uye_id):bool
 {
@@ -44,9 +50,71 @@ function icerik_delete(int $icerik_id):int
 function icerik_update(int $icerik_id, string $icerik_title, string $icerik_kategori, string $icerik_desc, int $uye_id):bool
 {
     global $pdo;
-    $prepared = $pdo->prepare("UPDATE icerik SET icerik_id=?, icerik_title=?, icerik_kategori=?, icerik_desc=?, uye_id=? WHERE icerik_id=?");
-    $prepared->execute([$icerik_title, $icerik_kategori, $icerik_desc, $uye_id]);
+    $prepared = $pdo->prepare("UPDATE icerik SET icerik_title=?, icerik_kategori=?, icerik_desc=?, uye_id=? WHERE icerik_id=?");
+    $prepared->execute([$icerik_title, $icerik_kategori, $icerik_desc, $uye_id, $icerik_id ]);
     return true;
+}
+function get_icerik(int $icerik_id):array
+{
+    global $pdo;
+    $prepared=$pdo->prepare("SELECT * FROM icerik WHERE icerik_id=:id");
+    $prepared->execute(['id'=>$icerik_id]);
+    return $prepared->fetch();
+}
+
+
+/**********************************************  MADDE FUNCTIONS   *****************************************************************/
+
+/** Madde Ekleme */
+
+function madde_add(int $madde_id, string $madde_baslik, string $madde_icerik,  int $icerik_id):bool
+{
+    global $pdo;
+    $prepared=$pdo->prepare("INSERT INTO madde (madde_id, madde_baslik, madde_icerik, icerik_id) VALUES (NULL ,?,?,?)");
+    $prepared->execute([$madde_baslik, $madde_icerik, $icerik_id]);
+    return true;
+}
+
+/** Madde Listeleme */
+
+function madde_list():array
+{
+    global $pdo;
+    $prepared=$pdo->prepare("SELECT * FROM madde");
+    $prepared->execute([]);
+    $data=$prepared->fetchAll();
+    return $data;
+
+}
+
+/** Madde Silme Fonksiynu */
+
+function madde_delete(int $madde_id):int
+{
+    global $pdo;
+    $prepared=$pdo->prepare("DELETE FROM madde WHERE madde_id=?");
+    $prepared->execute([$madde_id]);
+    return true;
+}
+/** Madde Güncelleme Fonksiyonu   */
+
+function madde_update(int $madde_id, string $madde_baslik, string $madde_icerik, int $icerik_id):bool
+{
+    global $pdo;
+    $prepared = $pdo->prepare("UPDATE madde SET madde_baslik=?, madde_icerik=?, icerik_id=? WHERE madde_id=?");
+    $prepared->execute([$madde_baslik, $madde_icerik, $icerik_id, $madde_id ]);
+    return true;
+}
+
+
+/** Madde get madde fonksiyonu */
+
+function get_madde(int $madde_id):array
+{
+    global $pdo;
+    $prepared=$pdo->prepare("SELECT * FROM madde WHERE madde_id=:id");
+    $prepared->execute(['id'=>$madde_id]);
+    return $prepared->fetch();
 }
 
 ?>

@@ -22,6 +22,8 @@ foreach ($data as $item)
     <td><?php echo $item['icerik_desc']; ?></td>
     <td><?php echo $item['uye_id']; ?></td>
     <td><a href="icerik_delete.php?id=<?php echo $item['icerik_id']; ?>">Sil</a></td>
+    <td><a href="icerik_update.php?id=<?php echo $item['icerik_id']; ?>">Güncelle</a></td>
+
 </tr>
 <?php
 }
